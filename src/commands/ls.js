@@ -1,6 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
 
+// TODO make size of files visible
+
 // const  fileSize = async (file) => {
 //   const stat = await fs.stat(file)
 //   const result = stat.result
@@ -16,20 +18,18 @@ export const ls = async () => {
       {
         name: item.name, 
         ext: path.extname(item.name), 
-        size: fileSize(item),
+        // size: fileSize(item),
         type: 'file'
       } : 
       {
         name: item.name, 
         ext: '', 
-        size: '', 
+        // size: '', 
         type: 'dir'
       }).sort((a,b) => 
       a.type < b.type ? -1 : a.type > b.type ? 1 : 0
     ) 
-      
       console.table(table, ['name', 'ext', 'type'])
-
   } catch (err) {
     console.error(err)
   }
