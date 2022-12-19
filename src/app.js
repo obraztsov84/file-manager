@@ -7,6 +7,7 @@ import { showPath } from './commands/showPath.js';
 import { exit } from './commands/exit.js'; 
 import { cd } from './commands/cd.js';
 import { system } from './commands/system.js';
+import { hash } from './commands/hash.js';
 
 
 const userPath = os.homedir()
@@ -52,14 +53,19 @@ readUserLine.on("line", async (data) => {
   }
 
   if ( data.match(/^os\s--.+$/) ) {
-    system(data.replace(/os\s--/, ''))
+    const newData = data.replace(/os\s--/, '')
+    system(newData)
     return
   }  
 
   if (data.match(/^exit\s.+$/) || data.trim().match(/^exit$/)) {
     exit(userName)
   }
-
+  if ( data.match(/^hash\s.+$/) ) {
+    const newData = data.replace(/hash\s/, '')
+    await hash(newData)
+    return
+  }
   showPath()
 })
 
