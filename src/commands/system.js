@@ -3,7 +3,7 @@ import { showPath } from './showPath.js';
 import { MESSAGES } from '../constants/messages.js';
 
 export const system = (arg) => {
-  console.log('args ============ ', arg)
+  // console.log('args ============ ', arg)
   const validArgs = ['eol', 'EOL', 'homedir', 'cpu', 'cpus', 'username', 'architecture', '']
   if (arg ===  'eol' || arg ===  'EOL') console.log(JSON.stringify(os.EOL))
   if (arg === 'homedir') console.log(os.homedir())

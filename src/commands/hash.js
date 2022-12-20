@@ -4,18 +4,16 @@ import { getOnePath } from '../helpers/getOnePath.js';
 import { checkPath } from '../helpers/checkPath.js';
 import { showPath } from './showPath.js';
 import { MESSAGES } from '../constants/messages.js';
+import { checkFile } from '../helpers/checkFile.js';
 
 
 export const hash = async (file) => {
   const hash = crypto.createHash('sha256');
   // console.log('file === ', file)
   try {
-    const path = getOnePath(file)
-    // console.log('path === ', path)
-    const isPathValid = await checkPath(path)
-    // console.log('path === ', path)
-    if (isPathValid) {
-      const data = await fs.readFile(path);
+    const checkedFile = await checkFile(file)
+    if (checkedFile) {
+      const data = await fs.readFile(checkedFile);
       hash.update(data);
       console.log(`Hash for ${file} is ${hash.copy().digest('hex')}`);
     } else {

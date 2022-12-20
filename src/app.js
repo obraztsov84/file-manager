@@ -8,6 +8,7 @@ import { exit } from './commands/exit.js';
 import { cd } from './commands/cd.js';
 import { system } from './commands/system.js';
 import { hash } from './commands/hash.js';
+import { cat } from './commands/cat.js';
 
 
 const userPath = os.homedir()
@@ -32,12 +33,10 @@ readUserLine.on("line", async (data) => {
     showPath()
     return 
   }
-
   if ( data.trim().match(/^ls$/) ) {
     await ls()
     return
   }
-
   if ( data.trim().match(/^cd$/) ||  data.trim().match(/^up$/) ) {
     up()
     return
@@ -51,13 +50,11 @@ readUserLine.on("line", async (data) => {
     console.log('You can pass arguments --eol, cpus, username, architecture, i can handle only one at a time')
     return
   }
-
   if ( data.match(/^os\s--.+$/) ) {
     const newData = data.replace(/os\s--/, '')
     system(newData)
     return
   }  
-
   if (data.match(/^exit\s.+$/) || data.trim().match(/^exit$/)) {
     exit(userName)
   }
@@ -66,9 +63,11 @@ readUserLine.on("line", async (data) => {
     await hash(newData)
     return
   }
+  if ( data.match(/^cat\s.+$/) ) {
+    const newData = data.replace(/cat\s/, '')
+    await cat(newData)
+    return
+  }
   showPath()
 })
-
-// exit(userName)
-
 
