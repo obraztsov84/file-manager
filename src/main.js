@@ -6,6 +6,7 @@ import { cd } from './commands/cd.js';
 import { system } from './commands/system.js';
 import { hash } from './commands/hash.js';
 import { cat } from './commands/cat.js';
+import { cowSay } from './commands/cow.js';
 import { MESSAGES } from './constants/messages.js';
 
 export const main = async (data, name) => {
@@ -47,6 +48,11 @@ export const main = async (data, name) => {
   if ( data.match(/^cat\s.+$/) ) {
     const newData = data.replace(/cat\s/, '')
     await cat(newData)
+    return
+  }
+  if ( data.match(/^cowSay\s.+$/i) || data.match(/^cowSay$/i) ) {
+    const newData = data.replace(/cowSay\s/i, '')
+    cowSay(newData)
     return
   }
   console.log(MESSAGES.TRY_AGAIN)
