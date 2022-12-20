@@ -7,5 +7,6 @@ export const MESSAGES = {
   'START_OF_FILE': '=== Start of file ===',
   'END_OF_FILE': '=== End of file ===',
   'HELP_OS': 'You can pass arguments --eol, cpus, username, architecture, i can handle only one at a time',
+  'TRY_AGAIN': 'Doesnt know that command, try again',
   'SHOW_CURRENT_PATH': () => showPath() 
 }
