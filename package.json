@@ -1,0 +1,21 @@
+{
+  "name": "file-manager",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "cli file manager",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "add": "node src/handlers/add.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obraztsov84/file-manager.git"
+  },
+  "author": "andreikovna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/obraztsov84/file-manager/"
+  },
+  "homepage": "https://github.com/obraztsov84/file-manager#readme"
+}
