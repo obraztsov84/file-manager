@@ -1,5 +1,4 @@
 import os from 'os';
-import { showPath } from './showPath.js';
 import { MESSAGES } from '../constants/messages.js';
 
 export const system = (arg) => {
@@ -12,5 +11,5 @@ export const system = (arg) => {
   if (arg === 'username') console.log(`User name: ${os.userInfo().username}`)
   if (arg === 'architecture') console.log(`Architecture: ${os.arch()}`)
   if (!validArgs.some(item => item === arg)) console.log(MESSAGES.INVALID_INPUT)
-  showPath();
+  MESSAGES.SHOW_CURRENT_PATH()
 }

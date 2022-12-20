@@ -1,25 +1,22 @@
-import { getOnePath } from '../helpers/getOnePath.js';
-import { checkPath } from '../helpers/checkPath.js';
-import { MESSAGES } from '../constants/messages.js';
+import { checkFile } from '../helpers/checkFile.js';
 import { showPath } from './showPath.js';
+import { MESSAGES } from '../constants/messages.js';
 
-export const cd = async (data) => {
+export const cd = async (file) => {
   try {
-    const path = getOnePath(data)
-    const isExistDir = await checkPath(path)
 
-    if (isExistDir) {
+    const checkedFile = await checkFile(file);
+
+    if (checkedFile) {
       console.log(MESSAGES.DIRECTORY_CHANGED)
-      showPath(path);
+      showPath(checkedFile);
       return
     } 
-
     console.log(MESSAGES.FAILED_OPERATION)
-    showPath();
-
+    MESSAGES.SHOW_CURRENT_PATH()
   } catch  {
     console.log(MESSAGES.INVALID_INPUT)
-    showPath();
+    MESSAGES.SHOW_CURRENT_PATH()
   }
   
 }

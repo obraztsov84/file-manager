@@ -19,7 +19,6 @@ export const cat = async (file) => {
         process.stdout.write(os.EOL)
         MESSAGES.SHOW_CURRENT_PATH()
       })
-      // console.log(MESSAGES.END_OF_FILE)
       return
     } 
 

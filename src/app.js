@@ -9,6 +9,7 @@ import { cd } from './commands/cd.js';
 import { system } from './commands/system.js';
 import { hash } from './commands/hash.js';
 import { cat } from './commands/cat.js';
+import { MESSAGES } from './constants/messages.js';
 
 
 const userPath = os.homedir()
@@ -29,15 +30,16 @@ process.on('SIGKILL', () => exit(userName))
 readUserLine.on('error', err => console.error(err));
 
 readUserLine.on("line", async (data) => {
+  data = data && data.trim()
   if (data === '') {
     showPath()
     return 
   }
-  if ( data.trim().match(/^ls$/) ) {
+  if ( data.match(/^ls$/) ) {
     await ls()
     return
   }
-  if ( data.trim().match(/^cd$/) ||  data.trim().match(/^up$/) ) {
+  if ( data.match(/^cd$/) ||  data.match(/^up$/) ) {
     up()
     return
   }
@@ -46,8 +48,8 @@ readUserLine.on("line", async (data) => {
     await cd(newData)
     return
   }
-  if (data.trim().match(/^os$/)) {
-    console.log('You can pass arguments --eol, cpus, username, architecture, i can handle only one at a time')
+  if (data.match(/^os$/)) {
+    console.log(MESSAGES.HELP_OS)
     return
   }
   if ( data.match(/^os\s--.+$/) ) {
@@ -55,7 +57,7 @@ readUserLine.on("line", async (data) => {
     system(newData)
     return
   }  
-  if (data.match(/^exit\s.+$/) || data.trim().match(/^exit$/)) {
+  if (data.match(/^exit\s.+$/) || data.match(/^exit$/)) {
     exit(userName)
   }
   if ( data.match(/^hash\s.+$/) ) {
